@@ -3,6 +3,6 @@ class Supermarket < ApplicationRecord
   has_many :items
 
   def three_most_popular_items
-    items.joins(:customers).group(:id).order('count(customers.id) desc').limit(3)
+    items.joins(:customers).group(:id).order(Arel.sql('count(customers.id) desc')).limit(3)
   end
 end

@@ -6,3 +6,9 @@
   <p><%= link_to 'View All Items', "/supermarkets/#{@supermarket.id}/items" %></p> 
 </div>
 
+<div id="popular-items">
+  <h3>Popular Items</h3>
+  <% @supermarket.three_most_popular_items.each do |item| %>
+    <p><%= item.name %></p>
+  <% end %>
+</div>
