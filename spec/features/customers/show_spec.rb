@@ -26,7 +26,7 @@ RSpec.describe 'customer show page' do
     end
   end
 
-  it 'list name of supermarket customer belongs to' do
+  it 'displays name of supermarket customer belongs to' do
     market = Supermarket.create!(name: 'Fresh Market', location: 'Central Town Center')
     market2 = Supermarket.create!(name: 'Grocery Store', location: 'Central Town Center')
     customer = market.customers.create!(name: 'Basil')
@@ -36,6 +36,24 @@ RSpec.describe 'customer show page' do
     within '#supermarket' do
       expect(page).to have_content('Fresh Market')
       expect(page).to_not have_content('Grocery Store')
+    end
+  end
+
+  it 'displays total price of items' do
+    market = Supermarket.create!(name: 'Fresh Market', location: 'Central Town Center')
+    customer = market.customers.create!(name: 'Basil')
+    item1 = market.items.create!(name: 'One Egg', price: 1)
+    item2 = market.items.create!(name: 'Pineapple', price: 4)
+    item3 = market.items.create!(name: 'Baguette', price: 3)
+
+    customer_item1 = CustomerItem.create!(customer: customer, item: item1)
+    customer_item2 = CustomerItem.create!(customer: customer, item: item2)
+
+    visit "/customers/#{customer.id}"
+
+    within '#total-price' do
+      expect(page).to have_content('Total Price: 5')
+      expect(page).to_not have_content('Total Price: 8')
     end
   end
 end
