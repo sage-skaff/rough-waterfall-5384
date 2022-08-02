@@ -18,7 +18,7 @@ RSpec.describe Customer, type: :model do
 
       customer_item1 = CustomerItem.create!(customer: customer, item: item1)
       customer_item2 = CustomerItem.create!(customer: customer, item: item2)
-      customer_item3 = CustomerItem.create!(customer: customer, item: item3)
+      customer_item3 = CustomerItem.create!(customer: customer2, item: item3)
 
       expect(customer.total_price).to eq(5)
       expect(customer2.total_price).to eq(3)
