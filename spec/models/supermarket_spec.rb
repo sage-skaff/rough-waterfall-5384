@@ -15,7 +15,7 @@ RSpec.describe Supermarket, type: :model do
       item1 = market.items.create!(name: 'One Egg', price: 1)
       item2 = market.items.create!(name: 'Pineapple', price: 4)
       item3 = market.items.create!(name: 'Baguette', price: 3)
-      item3 = market.items.create!(name: 'Turkey', price: 6)
+      item4 = market.items.create!(name: 'Turkey', price: 6)
 
       customer_item1 = CustomerItem.create!(customer: customer, item: item1)
       customer_item2 = CustomerItem.create!(customer: customer, item: item2)
