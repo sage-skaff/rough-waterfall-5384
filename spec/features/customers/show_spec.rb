@@ -25,4 +25,17 @@ RSpec.describe 'customer show page' do
       expect(page).to_not have_content('Baguette')
     end
   end
+
+  it 'list name of supermarket customer belongs to' do
+    market = Supermarket.create!(name: 'Fresh Market', location: 'Central Town Center')
+    market2 = Supermarket.create!(name: 'Grocery Store', location: 'Central Town Center')
+    customer = market.customers.create!(name: 'Basil')
+
+    visit "/customers/#{customer.id}"
+
+    within '#supermarket' do
+      expect(page).to have_content('Fresh Market')
+      expect(page).to_not have_content('Grocery Store')
+    end
+  end
 end
