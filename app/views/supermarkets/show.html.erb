@@ -2,3 +2,7 @@
   <h1><%= @supermarket.name %></h1> 
 </div>
 
+<div id="view-items-link">
+  <p><%= link_to 'View All Items', "/supermarkets/#{@supermarket.id}/items" %></p> 
+</div>
+
